@@ -2,15 +2,23 @@
     ViewData["Title"] = "TaskThird";
 }
 
-<h2>Введите суммы отчислений для каждой из 15 фирм</h2>
+<div class="container">
+    <h2 class="text-center mb-4">Введите суммы отчислений для каждой из 15 фирм</h2>
 
-<form asp-action="ProcessDonations" method="post">
-    @for (int i = 0; i < 15; i++)
-    {
-        <div>
-            <label for="donation_@(i + 1)">Фирма @(i + 1):</label>
-            <input type="number" name="donations[@i]" id="donation_@(i + 1)" min="0" required />
+    <form asp-action="ProcessDonations" method="post">
+        @for (int i = 0; i < 15; i++)
+        {
+            <div class="form-group row">
+                <label for="donation_@(i + 1)" class="col-sm-2 col-form-label">Фирма @(i + 1):</label>
+                <div class="col-sm-10">
+                    <input type="number" name="donations[@i]" id="donation_@(i + 1)" class="form-control" min="0" required />
+                </div>
+            </div>
+        }
+        <div class="form-group row">
+            <div class="col-sm-10 offset-sm-2">
+                <button type="submit" class="btn btn-primary">Обработать отчисления</button>
+            </div>
         </div>
-    }
-    <button type="submit">Обработать отчисления</button>
-</form>
+    </form>
+</div>
