@@ -26,6 +26,7 @@ namespace ISRPO2.Controllers
         [HttpPost]
         public IActionResult CalculateAge(int birthYear, int birthMonth, int birthDay)
         {
+
             DateTime currentDate = DateTime.Now; 
             int age = CalculateAgee(birthYear, birthMonth, birthDay, currentDate.Year, currentDate.Month, currentDate.Day);
             ViewData["Age"] = age;
