@@ -50,6 +50,21 @@ namespace ISRPO2.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult CheckBishopMove(int x1, int y1, int x2, int y2)
+        {
+            bool canMove = CanBishopMove(x1, y1, x2, y2);
+            ViewData["CanMove"] = canMove;
+            return View("TaskSecond");
+        }
+
+        private bool CanBishopMove(int x1, int y1, int x2, int y2)
+        {
+            int dx = Math.Abs(x2 - x1);
+            int dy = Math.Abs(y2 - y1);
+
+            return dx == dy;
+        }
         public IActionResult TaskThird()
         {
             return View();

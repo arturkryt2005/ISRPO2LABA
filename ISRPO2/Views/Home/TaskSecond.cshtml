@@ -1,5 +1,42 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    ViewData["Title"] = "TaskSecond";
 }
+
+<div class="container">
+    <h2 class="mt-5 mb-4">Проверка возможности хода слона с одного поля на другое</h2>
+
+    <form method="post" asp-action="CheckBishopMove" class="mb-4">
+        <div class="form-group">
+            <label for="x1">Введите координату x первого поля (1-8):</label>
+            <input type="number" class="form-control" id="x1" name="x1" min="1" max="8" required>
+        </div>
+        <div class="form-group">
+            <label for="y1">Введите координату y первого поля (1-8):</label>
+            <input type="number" class="form-control" id="y1" name="y1" min="1" max="8" required>
+        </div>
+        <div class="form-group">
+            <label for="x2">Введите координату x второго поля (1-8):</label>
+            <input type="number" class="form-control" id="x2" name="x2" min="1" max="8" required>
+        </div>
+        <div class="form-group">
+            <label for="y2">Введите координату y второго поля (1-8):</label>
+            <input type="number" class="form-control" id="y2" name="y2" min="1" max="8" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Проверить</button>
+    </form>
+
+    @if (ViewData["CanMove"] != null)
+    {
+        bool canMove = (bool)ViewData["CanMove"];
+        <div class="alert @((canMove ? "alert-success" : "alert-danger")) mt-4">
+            @if (canMove)
+            {
+                <p>Слон может переместиться с первого поля на второе за один ход.</p>
+            }
+            else
+            {
+                <p>Слон не может переместиться с первого поля на второе за один ход.</p>
+            }
+        </div>
+    }
+</div>
