@@ -18,6 +18,41 @@ namespace ISRPO2.Controllers
             return View();
         }
 
+        public IActionResult TaskFirst()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult CalculateAge(int birthYear, int birthMonth, int birthDay)
+        {
+            DateTime currentDate = DateTime.Now; 
+            int age = CalculateAgee(birthYear, birthMonth, birthDay, currentDate.Year, currentDate.Month, currentDate.Day);
+            ViewData["Age"] = age;
+            return View("TaskFirst");
+        }
+
+        private int CalculateAgee(int birthYear, int birthMonth, int birthDay, int currentYear, int currentMonth, int currentDay)
+        {
+            DateTime birthDate = new DateTime(birthYear, birthMonth, birthDay);
+            int age = currentYear - birthYear;
+
+            if (currentMonth < birthMonth || (currentMonth == birthMonth && currentDay < birthDay))
+            {
+                age--;
+            }
+
+            return age;
+        }
+        public IActionResult TaskSecond()
+        {
+            return View();
+        }
+
+        public IActionResult TaskThird()
+        {
+            return View();
+        }
         public IActionResult Privacy()
         {
             return View();

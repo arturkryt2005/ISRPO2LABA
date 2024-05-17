@@ -1,5 +1,26 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    ViewData["Title"] = "Task 1";
+}
+
+<h2>Task 1</h2>
+<p>This is the Task 1 page.</p>
+<form method="post" asp-action="CalculateAge">
+    <div>
+        <label for="birthYear">Birth Year:</label>
+        <input type="number" id="birthYear" name="birthYear" required />
+    </div>
+    <div>
+        <label for="birthMonth">Birth Month:</label>
+        <input type="number" id="birthMonth" name="birthMonth" required />
+    </div>
+    <div>
+        <label for="birthDay">Birth Day:</label>
+        <input type="number" id="birthDay" name="birthDay" required />
+    </div>
+    <button type="submit">Calculate Age</button>
+</form>
+
+@if (ViewData["Age"] != null)
+{
+    <p>Age: @ViewData["Age"] years</p>
 }
