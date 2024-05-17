@@ -1,5 +1,16 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    ViewData["Title"] = "TaskThird";
 }
+
+<h2>Введите суммы отчислений для каждой из 15 фирм</h2>
+
+<form asp-action="ProcessDonations" method="post">
+    @for (int i = 0; i < 15; i++)
+    {
+        <div>
+            <label for="donation_@(i + 1)">Фирма @(i + 1):</label>
+            <input type="number" name="donations[@i]" id="donation_@(i + 1)" min="0" required />
+        </div>
+    }
+    <button type="submit">Обработать отчисления</button>
+</form>

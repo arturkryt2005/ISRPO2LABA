@@ -69,6 +69,32 @@ namespace ISRPO2.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public IActionResult ProcessDonations(int[] donations)
+        {
+            int totalDonations = donations.Sum();
+
+            double averageDonation = donations.Average();
+
+            var aboveAverageFirms = donations.Select((donation, index) => new { Donation = donation, Index = index + 1 })
+                                             .Where(x => x.Donation > averageDonation)
+                                             .Select(x => x.Index)
+                                             .ToList();
+
+            int minDonation = donations.Min();
+            var minDonationFirms = donations.Select((donation, index) => new { Donation = donation, Index = index + 1 })
+                                             .Where(x => x.Donation == minDonation)
+                                             .Select(x => x.Index)
+                                             .ToList();
+
+            ViewData["TotalDonations"] = totalDonations;
+            ViewData["AboveAverageFirms"] = aboveAverageFirms;
+            ViewData["MinDonationFirms"] = minDonationFirms;
+
+            return View("DonationsResult");
+        }
+
         public IActionResult Privacy()
         {
             return View();

@@ -1,0 +1,10 @@
+﻿@{
+    ViewData["Title"] = "DonationsResult";
+}
+
+<div class="text-center mt-5">
+    <h2>Результаты обработки отчислений на благотворительность</h2>
+    <p>Общая сумма отчислений: @ViewData["TotalDonations"]</p>
+    <p>Фирмы с суммой выше средней: @string.Join(", ", (List<int>)ViewData["AboveAverageFirms"])</p>
+    <p>Фирмы с минимальной суммой: @string.Join(", ", (List<int>)ViewData["MinDonationFirms"])</p>
+</div>
